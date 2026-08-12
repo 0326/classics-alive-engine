@@ -3,8 +3,8 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { spawnSync } from "node:child_process";
 
-const run = (target, shouldPass, label) => {
-	const result = spawnSync(process.execPath, ["scripts/validate-content.mjs", target], { encoding: "utf8" });
+const run = (target, shouldPass, label, reportDir = undefined) => {
+	const result = spawnSync(process.execPath, ["scripts/validate-content.mjs", target], { encoding: "utf8", env: { ...process.env, ...(reportDir ? { CAGE_REPORT_DIR: reportDir } : {}) } });
 	if ((result.status === 0) !== shouldPass) throw new Error(`${label}: expected ${shouldPass ? "pass" : "failure"}\n${result.stdout}\n${result.stderr}`);
 };
 const withFixture = (label, mutate) => {
@@ -13,7 +13,7 @@ const withFixture = (label, mutate) => {
 		const fixture = join(root, "demo");
 		cpSync("content/demo", fixture, { recursive: true });
 		mutate(fixture);
-		run(fixture, false, label);
+		run(fixture, false, label, join(root, "reports"));
 	} finally { rmSync(root, { recursive: true, force: true }); }
 };
 

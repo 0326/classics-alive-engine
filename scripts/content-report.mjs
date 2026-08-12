@@ -22,7 +22,6 @@ const report = {
 	citationCoverage: sourceGrounded.filter((claim) => claim.sourceRefs?.length).length / Math.max(sourceGrounded.length, 1),
 	canonicalClaimCoverage: sourceGrounded.length ? 1 : 0,
 	counterfactualClaims: claims.filter((claim) => claim.certainty === "counterfactual").length,
-	generatedAt: new Date().toISOString(),
 };
 const output = resolve("reports", manifest.id, "content-report.json");
 mkdirSync(dirname(output), { recursive: true });

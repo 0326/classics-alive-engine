@@ -1,10 +1,10 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { dirname, join, relative, resolve } from "node:path";
 import { Compiler } from "inkjs/full";
 
 const root = resolve(process.argv[2] ?? "content/demo");
 const errors = [];
-const diagnostics = { root, checkedAt: new Date().toISOString(), choices: 0, canonicalChoices: 0, outcomes: 0, citedClaims: 0, assetReferences: 0 };
+const diagnostics = { root: relative(process.cwd(), root) || ".", choices: 0, canonicalChoices: 0, outcomes: 0, citedClaims: 0, assetReferences: 0 };
 const read = (file) => readFileSync(join(root, file), "utf8");
 const json = (file) => {
 	try { return JSON.parse(read(file)); }
@@ -166,7 +166,7 @@ for (const claim of claims) {
 }
 diagnostics.citedClaims = usagesByClaim.size;
 const report = { status: errors.length ? "failed" : "passed", diagnostics, errors };
-const reportFile = resolve("reports", manifest?.id ?? "unknown", "validation.json");
+const reportFile = resolve(process.env.CAGE_REPORT_DIR ?? "reports", manifest?.id ?? "unknown", "validation.json");
 mkdirSync(dirname(reportFile), { recursive: true });
 writeFileSync(reportFile, `${JSON.stringify(report, null, 2)}\n`);
 if (errors.length) {

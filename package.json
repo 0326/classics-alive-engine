@@ -27,7 +27,7 @@
     "typecheck": "tsc --noEmit",
     "test": "node scripts/test-validator.mjs && node scripts/test-importer.mjs && tsx tests/historical-runner.test.ts && npm run story:verify && npm run story:canon",
     "lint": "node scripts/check-docs.mjs",
-    "check": "npm run lint && npm run typecheck && npm run content:validate && npm run content:compile"
+    "check": "npm run lint && npm run content:validate && npm run content:compile && npm run typecheck"
   },
   "devDependencies": {
     "@playwright/test": "^1.58.2",
