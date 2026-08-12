@@ -1,0 +1,11 @@
+{
+  "id": "demo",
+  "title": "圯上受履：五日之约",
+  "classicId": "demo",
+  "renderer": "dom",
+  "canonicalEnding": "demo.ending.canon",
+  "durationMinutes": 12,
+  "choiceNodes": 7,
+  "counterfactualOutcomes": 4,
+  "version": "0.2.0"
+}

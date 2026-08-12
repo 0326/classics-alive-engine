@@ -1,0 +1,9 @@
+{
+  "pack": "demo",
+  "reviewers": {
+    "historical": {"status": "awaiting-human-review", "note": "已记录通行文本 URL、取阅日期和 raw excerpt；需史学顾问复核底本与异文。"},
+    "narrative": {"status": "validated", "note": "正史与假设分支已由自动验证分层；仍待人工叙事审阅。"},
+    "visual": {"status": "draft", "note": "已提供项目自制 SVG 草图；正式美术与考据仍待替换。"}
+  },
+  "nextGate": "human-historical-review"
+}

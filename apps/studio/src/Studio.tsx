@@ -1,0 +1,14 @@
+import { activeContent } from "./active-content";
+
+const evidenceClaims = activeContent.claims.filter((claim) => claim.sourceRefs.length > 0);
+const reviewed = Object.values(activeContent.review.reviewers).filter((item) => item.status === "reviewed").length;
+const completion = Math.round(((evidenceClaims.length / Math.max(activeContent.claims.length, 1)) * 60) + ((reviewed / 3) * 40));
+
+export function Studio() {
+	const downloadReport = () => {
+		const report = { pack: activeContent.manifest.id, version: activeContent.manifest.version, claims: activeContent.claims, review: activeContent.review, generatedAt: new Date().toISOString() };
+		const url = URL.createObjectURL(new Blob([JSON.stringify(report, null, 2)], { type: "application/json" }));
+		const anchor = document.createElement("a"); anchor.href = url; anchor.download = `${activeContent.manifest.id}-review-export.json`; anchor.click(); URL.revokeObjectURL(url);
+	};
+	return <main className="studio"><header><div className="studio-brand"><span>古</span><div><b>古籍活化</b><small>CONTENT REVIEW STUDIO</small></div></div><div className="review-state"><i />当前内容包 · {activeContent.manifest.id} / v{activeContent.manifest.version}</div></header><div className="studio-grid"><aside><p className="eyebrow">WORKSPACE</p><h1>{activeContent.story.title}</h1><p className="muted">{activeContent.manifest.title}。审校台直接读取编译后的内容包，不再维护展示用的硬编码断言。</p><nav><a className="active">证据链</a><a>故事蓝图</a><a>资产清单</a><a>发布检查</a></nav><div className="completion"><div><span>内容完成度</span><strong>{completion}%</strong></div><div className="bar"><i style={{ width: `${completion}%` }} /></div><small>{activeContent.claims.length} claims · {activeContent.segments.length} source segments · {activeContent.story.counterfactualOutcomes + 1} endings</small></div></aside><section className="review"><div className="review-head"><div><p className="eyebrow">EVIDENCE LEDGER</p><h2>每个选择，都有出处</h2></div><button onClick={downloadReport}>导出审校报告 →</button></div><div className="claim-table"><div className="table-head"><span>断言</span><span>状态</span><span>来源</span><span>使用位置</span></div>{activeContent.claims.map((claim) => <div className="claim-row" key={claim.id}><div><b>{claim.id}</b><p>{claim.statement}</p></div><span className={claim.certainty === "explicit" ? "badge good" : "badge warn"}>{claim.certainty}</span><span className="source-count">{claim.sourceRefs.length ? `${claim.sourceRefs.length} 段原文` : "假设分支"}</span><span className="usage">{claim.usages.join(" · ")}</span></div>)}</div><div className="review-footer"><div><span className="dot green" />正史路线自动验证</div><div><span className="dot gold" />{activeContent.assets.assets.length} 个登记资产</div><div><span className="dot gray" />史学：{activeContent.review.reviewers.historical.status}</div></div></section></div></main>;
+}

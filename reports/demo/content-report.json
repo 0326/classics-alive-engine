@@ -1,0 +1,17 @@
+{
+  "book": "demo",
+  "version": "0.2.0",
+  "status": "validated",
+  "reviewStatus": "awaiting-human-review",
+  "releaseStatus": "blocked:human-historical-review",
+  "segments": 9,
+  "claims": 12,
+  "claimsByCertainty": {
+    "explicit": 8,
+    "counterfactual": 4
+  },
+  "citationCoverage": 1,
+  "canonicalClaimCoverage": 1,
+  "counterfactualClaims": 4,
+  "generatedAt": "2026-08-12T18:38:19.392Z"
+}

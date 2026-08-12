@@ -1,0 +1,8 @@
+{
+  "id": "demo",
+  "title": "史记·留侯世家（圯上受履切片）",
+  "language": "zh-CN",
+  "version": "0.2.0",
+  "license": "public-domain",
+  "defaultRenderer": "dom"
+}

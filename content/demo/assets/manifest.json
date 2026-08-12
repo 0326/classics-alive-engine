@@ -1,0 +1,12 @@
+{
+  "assets": [
+    {"id":"background.xiapixian-evening","type":"background","status":"draft","path":"backgrounds/xiapixian-evening.svg","license":"CC0-1.0","provenance":"project-authored vector placeholder","brief":"下邳圯上暮色；木桥、低河面、无现代建筑。"},
+    {"id":"background.xiapixian-pre-dawn","type":"background","status":"draft","path":"backgrounds/xiapixian-pre-dawn.svg","license":"CC0-1.0","provenance":"project-authored vector placeholder","brief":"鸡鸣前的冷色河桥；不出现路灯或现代城市光。"},
+    {"id":"background.xiapixian-night","type":"background","status":"draft","path":"backgrounds/xiapixian-night.svg","license":"CC0-1.0","provenance":"project-authored vector placeholder","brief":"夜未半的圯上；月光、雾气、无现代物件。"},
+    {"id":"background.xiapixian-dawn","type":"background","status":"draft","path":"backgrounds/xiapixian-dawn.svg","license":"CC0-1.0","provenance":"project-authored vector placeholder","brief":"平明时分的河桥；汉初乡野意象。"},
+    {"id":"background.xiapixian-morning","type":"background","status":"draft","path":"backgrounds/xiapixian-morning.svg","license":"CC0-1.0","provenance":"project-authored vector placeholder","brief":"授书后的晨光；保持简朴桥面与河岸。"},
+    {"id":"character.zhangliang","type":"character","status":"draft","path":"characters/zhangliang.svg","license":"CC0-1.0","provenance":"project-authored vector placeholder","brief":"青年张良，汉初朴素衣冠，避免影视化甲胄。"},
+    {"id":"character.elder","type":"character","status":"draft","path":"characters/elder.svg","license":"CC0-1.0","provenance":"project-authored vector placeholder","brief":"衣褐老父；不将其视觉定性为神仙形象。"},
+    {"id":"character.narrator","type":"character","status":"draft","path":"characters/narrator.svg","license":"CC0-1.0","provenance":"project-authored vector placeholder","brief":"中性叙事图标，用于来源与改编提示。"}
+  ]
+}

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Build Classics Alive Game"
+  short_description: "Build traceable Web games from classic texts"
+  default_prompt: "Use $build-classics-alive-game to turn an authorized classic text into a source-grounded, validated Web game chapter."
+
+policy:
+  allow_implicit_invocation: true

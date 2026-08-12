@@ -1,0 +1,17 @@
+{
+  "status": "failed",
+  "diagnostics": {
+    "root": "/var/folders/50/1svf5w1104bf9154bx0575xr0000gn/T/cage-validator-NOtp9a/demo",
+    "checkedAt": "2026-08-12T18:38:07.410Z",
+    "choices": 14,
+    "canonicalChoices": 7,
+    "outcomes": 5,
+    "citedClaims": 12,
+    "assetReferences": 24
+  },
+  "errors": [
+    "claim.zhangliang.take-shoe: usage does not exist in Ink: demo.act-99.missing",
+    "claim.zhangliang.take-shoe: declared usage is not connected to its Ink tag: demo.act-99.missing",
+    "claim.zhangliang.take-shoe: Ink tag is missing from declared usages: demo.act-01.take-shoe"
+  ]
+}

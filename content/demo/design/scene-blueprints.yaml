@@ -1,0 +1,23 @@
+story: demo
+targetDurationMinutes: 12
+acts:
+  - id: act-01
+    title: 圯上受履
+    nodes: [demo.act-01.take-shoe, demo.act-01.kneel-shoe, demo.act-01.accept-appointment]
+  - id: act-02
+    title: 两次失约
+    nodes: [demo.act-02.first-appointment, demo.act-02.second-appointment]
+  - id: act-03
+    title: 夜半授书
+    nodes: [demo.act-03.third-appointment, demo.act-03.receive-book]
+endings:
+  - id: demo.ending.canon
+    status: explicit
+  - id: demo.outcome.refuse-shoe
+    status: counterfactual
+  - id: demo.outcome.leave-appointment
+    status: counterfactual
+  - id: demo.outcome.stop-trying
+    status: counterfactual
+  - id: demo.outcome.reject-book
+    status: counterfactual

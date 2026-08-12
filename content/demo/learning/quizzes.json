@@ -1,0 +1,9 @@
+{
+  "questions": [
+    {"id":"demo.quiz.01","prompt":"哪一项直接出现在原典摘录中？","options":["张良长跪履之","张良即刻拜师","老人赠剑"],"answer":0,"evidence":["shiji.055.yishang.003"]},
+    {"id":"demo.quiz.02","prompt":"第二次赴约时，张良何时抵达？","options":["五日鸡鸣","夜未半","日落后"],"answer":0,"evidence":["shiji.055.yishang.006"]},
+    {"id":"demo.quiz.03","prompt":"“夜未半往”属于哪一次赴约？","options":["第三次","第一次","第二次"],"answer":0,"evidence":["shiji.055.yishang.007"]},
+    {"id":"demo.quiz.04","prompt":"玩家拒绝读书的结局应被标记为何种状态？","options":["counterfactual","explicit","原文引句"],"answer":0,"evidence":[]}
+  ],
+  "status":"validated"
+}

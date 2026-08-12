@@ -1,0 +1,11 @@
+{
+  "work": "史记",
+  "chapter": "卷五十五·留侯世家第二十五",
+  "section": "圯上受履至常习诵读",
+  "edition": "中国哲学书电子化计划《史记·留侯世家》通行文本",
+  "sourceUrl": "https://ctext.org/text.pl?if=gb&node=7184",
+  "retrievedAt": "2026-08-12",
+  "provenance": "原典为公共领域古代文本；本内容包保存经人工核对的节录与行级映射。",
+  "normalization": ["统一为简体标点", "不改写引文文字", "段落仅按互动节点拆分"],
+  "status": "awaiting-human-review"
+}

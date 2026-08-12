@@ -1,0 +1,12 @@
+node_modules/
+dist/
+coverage/
+.turbo/
+reports/*.tmp
+reports/invalid-missing-source/
+generated/
+test-results/
+playwright-report/
+.env
+.env.*
+!.env.example

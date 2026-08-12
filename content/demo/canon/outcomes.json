@@ -1,0 +1,11 @@
+{
+  "achievements": [
+    {"id":"achievement.demo.yishang-endure","title":"圯上受履","claim":"claim.zhangliang.study-book"}
+  ],
+  "deaths": [
+    {"id":"outcome.demo.refuse-shoe","claim":"claim.counterfactual.refuse-shoe"},
+    {"id":"outcome.demo.leave-appointment","claim":"claim.counterfactual.leave-appointment"},
+    {"id":"outcome.demo.stop-trying","claim":"claim.counterfactual.stop-trying"},
+    {"id":"outcome.demo.reject-book","claim":"claim.counterfactual.reject-book"}
+  ]
+}

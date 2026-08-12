@@ -1,0 +1,8 @@
+{
+  "method": "manual-segment-against-raw-excerpt",
+  "source": "史记·卷五十五·留侯世家第二十五",
+  "segments": 9,
+  "ocrRisk": "not-applicable",
+  "warnings": ["通行文本异文及标点仍需史学顾问确认；本包不以自动抓取结果替代底本审校。"],
+  "status": "awaiting-human-review"
+}
