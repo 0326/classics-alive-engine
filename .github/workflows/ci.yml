@@ -15,11 +15,5 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run check
-      - run: npm test
-      - run: npm run build:all
-      - run: npm run build:budget
-      - run: npm run content:report
-      - run: npm run deploy:dry
       - run: npx playwright install --with-deps chromium
-      - run: npm run test:e2e
+      - run: npm run playability:gate

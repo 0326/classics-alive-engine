@@ -1,0 +1,12 @@
+{"id":"claim.zhuzhiwu.accept-mission","statement":"郑伯承认未早用烛之武，烛之武随后应允出使。","certainty":"explicit","sourceRefs":["zuozhuan.xigong30.005"],"usages":["zhuzhiwu.act-01.accept-mission"]}
+{"id":"claim.zhuzhiwu.night-descent","statement":"烛之武在夜间从城上缒出，前往会见秦伯。","certainty":"explicit","sourceRefs":["zuozhuan.xigong30.006"],"usages":["zhuzhiwu.act-02.descend-at-night"]}
+{"id":"claim.zhuzhiwu.neighbor-cost","statement":"烛之武指出灭郑会使晋的邻国利益增长，而秦的相对利益受损。","certainty":"explicit","sourceRefs":["zuozhuan.xigong30.007"],"usages":["zhuzhiwu.act-03.name-neighbor-cost"]}
+{"id":"claim.zhuzhiwu.east-host","statement":"烛之武提出郑可作为秦国东方往来使者的接待之地。","certainty":"explicit","sourceRefs":["zuozhuan.xigong30.008"],"usages":["zhuzhiwu.act-04.offer-east-host"]}
+{"id":"claim.jin.breaks-promise","statement":"烛之武以晋曾受秦赐而旋即在焦、瑕设防为例，提醒秦伯晋国失信。","certainty":"explicit","sourceRefs":["zuozhuan.xigong30.009"],"usages":["zhuzhiwu.act-05.recall-jin-promise"]}
+{"id":"claim.jin.future-expansion","statement":"烛之武论证晋若东面扩张后仍会向西扩张，削弱秦国。","certainty":"explicit","sourceRefs":["zuozhuan.xigong30.009"],"usages":["zhuzhiwu.act-06.describe-future-risk"]}
+{"id":"claim.qin.alliance-with-zheng","statement":"秦伯听从劝说后与郑人结盟，并留杞子、逢孙、杨孙戍守。","certainty":"explicit","sourceRefs":["zuozhuan.xigong30.010"],"usages":["zhuzhiwu.act-07.report-alliance"]}
+{"id":"claim.jin.withdraws","statement":"晋文公拒绝攻击秦军，晋军随后撤离。","certainty":"explicit","sourceRefs":["zuozhuan.xigong30.010"],"usages":["zuozhuan.zhuzhiwu.ending.canon"]}
+{"id":"claim.counterfactual.refuse-mission","statement":"烛之武拒绝出使，郑国失去原典所记的说秦路径。","certainty":"counterfactual","sourceRefs":[],"rationale":"用以呈现郑伯致歉与应允出使在原典结构中的关键性。","usages":["zhuzhiwu.act-01.refuse-mission","zuozhuan.zhuzhiwu.outcome.refuse-mission"]}
+{"id":"claim.counterfactual.daylight-descent","statement":"烛之武白日出城，被围军截断而未能见到秦伯。","certainty":"counterfactual","sourceRefs":[],"rationale":"原典仅记夜缒而出；此分支不能被误作原典情节。","usages":["zhuzhiwu.act-02.descend-by-day","zuozhuan.zhuzhiwu.outcome.daylight-descent"]}
+{"id":"claim.counterfactual.only-plead","statement":"烛之武只请求怜悯而未说明秦国利益，秦伯未改主意。","certainty":"counterfactual","sourceRefs":[],"rationale":"用于对照原典说辞中利益推理的作用。","usages":["zhuzhiwu.act-03.only-plead","zhuzhiwu.act-05.repeat-submission","zuozhuan.zhuzhiwu.outcome.only-plead"]}
+{"id":"claim.counterfactual.threaten-qin","statement":"烛之武以威胁取代结盟提议，谈判中断。","certainty":"counterfactual","sourceRefs":[],"rationale":"用于区分原典中以利害论证与虚构的强硬策略。","usages":["zhuzhiwu.act-04.threaten-qin","zhuzhiwu.act-06.overpromise","zhuzhiwu.act-07.force-attack","zuozhuan.zhuzhiwu.outcome.threaten-qin"]}

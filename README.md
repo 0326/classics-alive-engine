@@ -18,4 +18,16 @@
 npm run check
 ```
 
-该命令验证文档、TypeScript、原文/claim/story/asset 链路并编译活动内容包。完整验证记录见 [验证报告](docs/verification-report.md)；常用命令还包括 `npm test`、`npm run build:all && npm run build:budget`、`npm run test:e2e`、`npm run deploy:dry` 和 `npm run content:intake -- <source.txt> <content-dir> <book-id>`。
+`npm run check` 适合日常快速检查。交付或让 Agent 宣称“完整可玩”前，必须运行：
+
+```bash
+npm run playability:gate
+```
+
+它会把内容规格、所有分支、正史路线、回归测试、生产构建、体积预算、浏览器试玩和部署 dry-run 串成单一门禁；结论写入 `reports/<pack-id>/completion.json`。技术通过只得到 `validated`，仍需在内容包的 `review/approval.json` 中记录真人史学审校，才会成为 `ready-for-release`。完整验证记录见 [验证报告](docs/verification-report.md)；导入命令为 `npm run content:intake -- <source.txt> <content-dir> <book-id>`。
+
+要在不改写默认活动包的情况下验证另一章，可显式指定：
+
+```bash
+CAGE_CONTENT_PACK=content/demo CAGE_STORY_ID=demo npm run playability:gate
+```

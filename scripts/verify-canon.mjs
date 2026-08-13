@@ -1,8 +1,9 @@
 import { Compiler } from "inkjs/full";
 import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { activeGame } from "./active-game.mjs";
 
-const file = process.argv[2];
-if (!file) throw new Error("Usage: node scripts/verify-canon.mjs <story.ink>");
+const file = process.argv[2] ?? resolve(activeGame.contentPack, "stories", `${activeGame.storyId}.ink`);
 const source = readFileSync(file, "utf8");
 const story = new Compiler(source).Compile();
 const authoredChoiceTags = new Map([...source.matchAll(/^\s*\*\s*\[([^\]]+)\]\s*(.*)$/gm)].map((match) => [match[1].trim(), [...match[2].matchAll(/#([\w-]+)(?::([^\s]+))?/g)].map((tag) => tag[2] ? `${tag[1]}:${tag[2]}` : tag[1])]));

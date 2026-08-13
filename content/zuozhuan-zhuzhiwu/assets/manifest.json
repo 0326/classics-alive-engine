@@ -1,0 +1,12 @@
+{
+  "assets": [
+    {"id":"background.zheng-wall-night","type":"background","status":"draft","path":"backgrounds/zheng-wall-night.svg","license":"CC0-1.0","provenance":"project-authored vector draft","brief":"郑国城墙夜色、烽火与远处营帐；不出现现代建筑。"},
+    {"id":"background.zheng-wall-rope","type":"background","status":"draft","path":"backgrounds/zheng-wall-rope.svg","license":"CC0-1.0","provenance":"project-authored vector draft","brief":"城墙垛口与下垂绳索，表现夜缒而出。"},
+    {"id":"background.qin-camp-night","type":"background","status":"draft","path":"backgrounds/qin-camp-night.svg","license":"CC0-1.0","provenance":"project-authored vector draft","brief":"秦军营帐与夜间火光，保留谈判的空间感。"},
+    {"id":"background.qin-camp-dawn","type":"background","status":"draft","path":"backgrounds/qin-camp-dawn.svg","license":"CC0-1.0","provenance":"project-authored vector draft","brief":"营帐前将明未明的冷暖交界，供说辞收束。"},
+    {"id":"background.armies-withdraw","type":"background","status":"draft","path":"backgrounds/armies-withdraw.svg","license":"CC0-1.0","provenance":"project-authored vector draft","brief":"秦晋军队分向撤离的远景，不把撤军描绘为战场胜利。"},
+    {"id":"character.zhuzhiwu","type":"character","status":"draft","path":"characters/zhuzhiwu.svg","license":"CC0-1.0","provenance":"project-authored vector draft","brief":"年长的郑国使者，衣着克制，避免影视化官服细节。","alt":"烛之武的草图立绘"},
+    {"id":"character.qin-duke","type":"character","status":"draft","path":"characters/qin-duke.svg","license":"CC0-1.0","provenance":"project-authored vector draft","brief":"秦伯的抽象立绘，不以具体面相替代史实考证。","alt":"秦伯的草图立绘"},
+    {"id":"character.zheng-duke","type":"character","status":"draft","path":"characters/zheng-duke.svg","license":"CC0-1.0","provenance":"project-authored vector draft","brief":"郑伯的抽象立绘，用于城内场景。","alt":"郑伯的草图立绘"}
+  ]
+}

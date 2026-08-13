@@ -1,0 +1,11 @@
+{
+  "id": "zhuzhiwu",
+  "title": "夜缒说秦：一席利害之辩",
+  "classicId": "zuozhuan-zhuzhiwu",
+  "renderer": "dom",
+  "canonicalEnding": "zuozhuan.zhuzhiwu.ending.canon",
+  "durationMinutes": 12,
+  "choiceNodes": 7,
+  "counterfactualOutcomes": 4,
+  "version": "0.1.0"
+}

@@ -1,0 +1,37 @@
+{
+  "pack": "zuozhuan-zhuzhiwu",
+  "storyId": "zhuzhiwu",
+  "status": "validated",
+  "releaseStatus": "blocked:human-historical-review",
+  "checks": [
+    {
+      "label": "content-quality",
+      "status": "passed"
+    },
+    {
+      "label": "static-check",
+      "status": "passed"
+    },
+    {
+      "label": "regression",
+      "status": "passed"
+    },
+    {
+      "label": "production-build",
+      "status": "passed"
+    },
+    {
+      "label": "build-budget",
+      "status": "passed"
+    },
+    {
+      "label": "browser-playthrough",
+      "status": "passed"
+    },
+    {
+      "label": "deployment-dry-run",
+      "status": "passed"
+    }
+  ],
+  "repairInputs": []
+}

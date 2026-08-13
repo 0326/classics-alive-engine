@@ -1,10 +1,10 @@
 import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { activeGame } from "./active-game.mjs";
 
-const config = JSON.parse(readFileSync(resolve("game.config.json"), "utf8"));
-const root = resolve(process.argv[2] ?? config.contentPack);
-const storyId = process.argv[3] ?? config.storyId;
-const out = resolve("generated", "active");
+const root = resolve(process.argv[2] ?? activeGame.contentPack);
+const storyId = process.argv[3] ?? activeGame.storyId;
+const out = resolve(process.env.CAGE_GENERATED_DIR ?? "generated/active");
 const readJson = (file) => JSON.parse(readFileSync(`${root}/${file}`, "utf8"));
 const readJsonl = (file) => readFileSync(`${root}/${file}`, "utf8").split(/\r?\n/).filter(Boolean).map(JSON.parse);
 if (!existsSync(`${root}/stories/${storyId}.ink`)) throw new Error(`Story not found: ${root}/stories/${storyId}.ink`);

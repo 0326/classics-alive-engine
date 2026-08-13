@@ -1,0 +1,9 @@
+{
+  "pack": "zuozhuan-zhuzhiwu",
+  "reviewers": {
+    "historical": {"status":"awaiting-human-review","note":"须由史学顾问核对通行本、人物称谓、焦瑕解释与译解措辞。"},
+    "narrative": {"status":"validated","note":"自动门禁已覆盖分支、正史路线与反事实标记；仍待人工叙事体验审阅。"},
+    "visual": {"status":"draft","note":"SVG 为项目自制草图，不作为春秋时期服制考据结论。"}
+  },
+  "nextGate": "human-historical-review"
+}

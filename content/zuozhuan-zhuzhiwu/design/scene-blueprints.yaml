@@ -1,0 +1,14 @@
+story: zhuzhiwu
+scenes:
+  - id: act-01-court
+    source: zuozhuan.xigong30.003
+    purpose: 交代危机与迟来的任用
+  - id: act-02-wall
+    source: zuozhuan.xigong30.006
+    purpose: 将夜缒作为行动门槛，而非虚构军事细节
+  - id: act-03-to-06-camp
+    source: zuozhuan.xigong30.007
+    purpose: 分层体验原典中的利害论证
+  - id: act-07-return
+    source: zuozhuan.xigong30.010
+    purpose: 回到结盟与撤军的原典结果

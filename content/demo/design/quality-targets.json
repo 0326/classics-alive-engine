@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "1.0",
+  "playability": {
+    "durationMinutes": {"min": 10, "max": 20},
+    "majorChoiceNodes": {"min": 6, "max": 8},
+    "canonicalRouteChoices": {"min": 6, "max": 8},
+    "endings": {"min": 5},
+    "counterfactualChoices": {"min": 4},
+    "assets": {"requireFiles": true}
+  },
+  "evidence": {
+    "sourceSegments": {"min": 9},
+    "claims": {"min": 12},
+    "sourceGroundedClaims": {"min": 8},
+    "canonicalEvidenceCoverage": 1
+  },
+  "release": {
+    "requiresHumanHistoricalReview": true
+  }
+}

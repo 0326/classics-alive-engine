@@ -1,0 +1,11 @@
+{
+  "achievements": [
+    {"id":"achievement.zhuzhiwu.qin-withdraws","title":"夜缒说秦","claim":"claim.jin.withdraws"}
+  ],
+  "deaths": [
+    {"id":"outcome.zhuzhiwu.refuse-mission","claim":"claim.counterfactual.refuse-mission"},
+    {"id":"outcome.zhuzhiwu.daylight-descent","claim":"claim.counterfactual.daylight-descent"},
+    {"id":"outcome.zhuzhiwu.only-plead","claim":"claim.counterfactual.only-plead"},
+    {"id":"outcome.zhuzhiwu.threaten-qin","claim":"claim.counterfactual.threaten-qin"}
+  ]
+}

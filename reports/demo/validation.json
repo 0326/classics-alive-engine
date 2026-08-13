@@ -4,6 +4,7 @@
     "root": "content/demo",
     "choices": 14,
     "canonicalChoices": 7,
+    "counterfactualChoices": 7,
     "outcomes": 5,
     "citedClaims": 12,
     "assetReferences": 24

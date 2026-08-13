@@ -1,0 +1,57 @@
+{
+  "book": "zuozhuan-zhuzhiwu",
+  "version": "0.1.0",
+  "status": "validated",
+  "reviewStatus": "awaiting-human-review",
+  "releaseStatus": "blocked:human-historical-review",
+  "qualityTargets": {
+    "schemaVersion": "1.0",
+    "playability": {
+      "durationMinutes": {
+        "min": 10,
+        "max": 20
+      },
+      "majorChoiceNodes": {
+        "min": 6,
+        "max": 8
+      },
+      "canonicalRouteChoices": {
+        "min": 6,
+        "max": 8
+      },
+      "endings": {
+        "min": 5
+      },
+      "counterfactualChoices": {
+        "min": 4
+      },
+      "assets": {
+        "requireFiles": true
+      }
+    },
+    "evidence": {
+      "sourceSegments": {
+        "min": 10
+      },
+      "claims": {
+        "min": 12
+      },
+      "sourceGroundedClaims": {
+        "min": 8
+      },
+      "canonicalEvidenceCoverage": 1
+    },
+    "release": {
+      "requiresHumanHistoricalReview": true
+    }
+  },
+  "segments": 10,
+  "claims": 12,
+  "claimsByCertainty": {
+    "explicit": 8,
+    "counterfactual": 4
+  },
+  "citationCoverage": 1,
+  "canonicalClaimCoverage": 1,
+  "counterfactualClaims": 4
+}

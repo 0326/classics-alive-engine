@@ -1,10 +1,11 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, resolve } from "node:path";
 import { Compiler } from "inkjs/full";
+import { activeGame } from "./active-game.mjs";
 
-const root = resolve(process.argv[2] ?? "content/demo");
+const root = resolve(process.argv[2] ?? activeGame.contentPack);
 const errors = [];
-const diagnostics = { root: relative(process.cwd(), root) || ".", choices: 0, canonicalChoices: 0, outcomes: 0, citedClaims: 0, assetReferences: 0 };
+const diagnostics = { root: relative(process.cwd(), root) || ".", choices: 0, canonicalChoices: 0, counterfactualChoices: 0, outcomes: 0, citedClaims: 0, assetReferences: 0 };
 const read = (file) => readFileSync(join(root, file), "utf8");
 const json = (file) => {
 	try { return JSON.parse(read(file)); }
@@ -20,6 +21,7 @@ const jsonl = (file) => {
 const tags = (text, name) => [...text.matchAll(new RegExp(`#${name}:([^\\s]+)`, "g"))].map((match) => match[1]);
 const normalize = (value) => value.replace(/[\s　]+/g, "").replace(/[，。！？、：“”‘’《》]/g, "");
 const manifest = json("manifest.json");
+const qualityTargets = json("design/quality-targets.json");
 const edition = json("sources/edition.json");
 const extraction = json("sources/extraction-report.json");
 const assets = json("assets/manifest.json")?.assets ?? [];
@@ -28,6 +30,26 @@ const segments = jsonl("sources/segments.jsonl");
 const claims = jsonl("canon/claims.jsonl");
 const quotes = jsonl("learning/quotes.jsonl");
 const reader = json("learning/reader.json")?.segments ?? {};
+
+const range = (value, label, { max = true } = {}) => {
+	if (!value || !Number.isInteger(value.min) || (max && !Number.isInteger(value.max)) || (max && value.min > value.max)) {
+		errors.push(`design/quality-targets.json: ${label} must declare valid integer min${max ? "/max" : ""}`);
+		return null;
+	}
+	return value;
+};
+if (qualityTargets?.schemaVersion !== "1.0") errors.push("design/quality-targets.json: schemaVersion 1.0 is required");
+const durationTarget = range(qualityTargets?.playability?.durationMinutes, "playability.durationMinutes");
+const choiceNodeTarget = range(qualityTargets?.playability?.majorChoiceNodes, "playability.majorChoiceNodes");
+const canonicalRouteTarget = range(qualityTargets?.playability?.canonicalRouteChoices, "playability.canonicalRouteChoices");
+const endingTarget = range(qualityTargets?.playability?.endings, "playability.endings", { max: false });
+const counterfactualTarget = range(qualityTargets?.playability?.counterfactualChoices, "playability.counterfactualChoices", { max: false });
+const segmentTarget = range(qualityTargets?.evidence?.sourceSegments, "evidence.sourceSegments", { max: false });
+const claimTarget = range(qualityTargets?.evidence?.claims, "evidence.claims", { max: false });
+const groundedClaimTarget = range(qualityTargets?.evidence?.sourceGroundedClaims, "evidence.sourceGroundedClaims", { max: false });
+if (qualityTargets?.evidence?.canonicalEvidenceCoverage !== 1) errors.push("design/quality-targets.json: evidence.canonicalEvidenceCoverage must be 1");
+if (typeof qualityTargets?.playability?.assets?.requireFiles !== "boolean") errors.push("design/quality-targets.json: playability.assets.requireFiles must be boolean");
+if (typeof qualityTargets?.release?.requiresHumanHistoricalReview !== "boolean") errors.push("design/quality-targets.json: release.requiresHumanHistoricalReview must be boolean");
 
 if (!manifest?.id || !manifest?.title || !manifest?.version || !manifest?.license) errors.push("manifest: id, title, version, license are required");
 if (!edition?.sourceUrl || !edition?.retrievedAt || !edition?.edition || !edition?.status) errors.push("sources/edition.json: edition, sourceUrl, retrievedAt, status are required");
@@ -67,6 +89,7 @@ for (const claim of claims) {
 	if (["invented", "counterfactual"].includes(claim.certainty) && !claim.rationale) errors.push(`${claim.id}: invented/counterfactual claim requires rationale`);
 	if (!claim.usages?.length) errors.push(`${claim.id}: claim has no usages`);
 }
+const sourceGroundedClaims = claims.filter((claim) => ["explicit", "inferred", "contested"].includes(claim.certainty));
 for (const quote of quotes) {
 	const segment = segmentMap.get(quote.sourceId);
 	if (!segment) errors.push(`quote: missing source ${quote.sourceId}`);
@@ -79,6 +102,7 @@ for (const asset of assets) {
 	assetIds.add(asset.id);
 	if (!asset.type || !asset.status || !asset.path || !asset.license || !asset.brief) errors.push(`asset ${asset.id}: type, status, path, license, brief are required`);
 	else if (!existsSync(join(root, "assets", asset.path))) errors.push(`asset ${asset.id}: missing file ${asset.path}`);
+	if (asset.type === "character" && !asset.alt) errors.push(`asset ${asset.id}: character assets require accessible alt text`);
 }
 const achievementIds = new Set((outcomes.achievements ?? []).map((item) => item.id));
 const deathIds = new Set((outcomes.deaths ?? []).map((item) => item.id));
@@ -105,7 +129,7 @@ for (const storyFile of storyFiles) {
 	try { ink = read(`stories/${storyFile}.ink`); new Compiler(ink).Compile(); }
 	catch (error) { errors.push(`stories/${storyFile}.ink: Ink compile failed: ${error.message}`); continue; }
 	if (!meta?.id || !meta?.title || !meta?.canonicalEnding || !meta?.version) errors.push(`stories/${storyFile}.json: missing required metadata`);
-	if (meta?.durationMinutes < 10 || meta?.durationMinutes > 20) errors.push(`stories/${storyFile}.json: duration must be 10–20 minutes`);
+	if (durationTarget && (meta?.durationMinutes < durationTarget.min || meta?.durationMinutes > durationTarget.max)) errors.push(`stories/${storyFile}.json: duration must be ${durationTarget.min}–${durationTarget.max} minutes`);
 	const choices = [...ink.matchAll(/^\s*\*\s*\[([^\]]+)\]\s*(.*)$/gm)];
 	diagnostics.choices += choices.length;
 	const labels = new Set();
@@ -132,6 +156,7 @@ for (const storyFile of storyFiles) {
 			}
 		}
 		for (const claimId of counters) {
+			diagnostics.counterfactualChoices += 1;
 			const claim = claimMap.get(claimId);
 			if (claim && claim.certainty !== "counterfactual") errors.push(`choice ${nodeId}: ${claimId} must be counterfactual`);
 			recordClaimUsage(claimId, nodeId, "choice counterfactual");
@@ -139,7 +164,7 @@ for (const storyFile of storyFiles) {
 	}
 	const choiceGroups = [...ink.matchAll(/===\s*([^=\n]+)\s*===([\s\S]*?)(?=\n===|$)/g)].filter((block) => /^\s*\*/m.test(block[2])).length;
 	if (meta?.choiceNodes !== choiceGroups) errors.push(`stories/${storyFile}.json: choiceNodes ${meta?.choiceNodes} does not match Ink ${choiceGroups}`);
-	if (choiceGroups < 6 || choiceGroups > 8) errors.push(`stories/${storyFile}.ink: expected 6–8 major choice nodes for a real chapter`);
+	if (choiceNodeTarget && (choiceGroups < choiceNodeTarget.min || choiceGroups > choiceNodeTarget.max)) errors.push(`stories/${storyFile}.ink: expected ${choiceNodeTarget.min}–${choiceNodeTarget.max} major choice nodes`);
 	for (const id of [...tags(ink, "bg"), ...tags(ink, "show")]) { diagnostics.assetReferences += 1; if (!assetIds.has(id)) errors.push(`stories/${storyFile}.ink: dangling asset ${id}`); }
 	for (const sourceId of tags(ink, "hint")) if (!segmentMap.has(sourceId)) errors.push(`stories/${storyFile}.ink: dangling hint ${sourceId}`);
 	for (const achievement of tags(ink, "achieve")) if (!achievementIds.has(achievement)) errors.push(`stories/${storyFile}.ink: dangling achievement ${achievement}`);
@@ -156,6 +181,13 @@ for (const storyFile of storyFiles) {
 	}
 	if (!usedOutcomeIds.has(meta?.canonicalEnding)) errors.push(`stories/${storyFile}.json: canonicalEnding has no #outcome`);
 }
+
+if (segmentTarget && segments.length < segmentTarget.min) errors.push(`sources: expected at least ${segmentTarget.min} source segments`);
+if (claimTarget && claims.length < claimTarget.min) errors.push(`canon: expected at least ${claimTarget.min} claims`);
+if (groundedClaimTarget && sourceGroundedClaims.length < groundedClaimTarget.min) errors.push(`canon: expected at least ${groundedClaimTarget.min} source-grounded claims`);
+if (canonicalRouteTarget && (diagnostics.canonicalChoices < canonicalRouteTarget.min || diagnostics.canonicalChoices > canonicalRouteTarget.max)) errors.push(`stories: expected ${canonicalRouteTarget.min}–${canonicalRouteTarget.max} canonical route choices`);
+if (endingTarget && diagnostics.outcomes < endingTarget.min) errors.push(`stories: expected at least ${endingTarget.min} endings`);
+if (counterfactualTarget && diagnostics.counterfactualChoices < counterfactualTarget.min) errors.push(`stories: expected at least ${counterfactualTarget.min} counterfactual choices`);
 
 for (const claim of claims) {
 	for (const usage of claim.usages ?? []) {

@@ -1,0 +1,28 @@
+{
+  "pack": "zuozhuan-zhuzhiwu",
+  "storyId": "zhuzhiwu",
+  "status": "validated",
+  "checks": [
+    {
+      "label": "content",
+      "status": "passed"
+    },
+    {
+      "label": "all-branches",
+      "status": "passed"
+    },
+    {
+      "label": "canonical-route",
+      "status": "passed"
+    },
+    {
+      "label": "compile",
+      "status": "passed"
+    },
+    {
+      "label": "content-report",
+      "status": "passed"
+    }
+  ],
+  "repairInputs": []
+}

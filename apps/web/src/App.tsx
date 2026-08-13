@@ -11,6 +11,7 @@ const assetUrl = (id?: string) => {
 	if (!asset) return undefined;
 	return Object.entries(assetModules).find(([file]) => file.endsWith(`/assets/${asset.path}`))?.[1];
 };
+const assetAlt = (id: string) => activeContent.assets.assets.find((item) => item.id === id)?.alt ?? id;
 const statusLabel = (status?: string | true) => status === "explicit" ? "原典明确记载" : status === "counterfactual" ? "假设历史分支" : "改编叙事连接";
 
 export function App() {
@@ -44,7 +45,7 @@ export function App() {
 			<div className="stage-wrap">
 				<div className="stage" aria-label={`${activeContent.story.title} 场景`} style={state.stage.background ? { backgroundImage: `linear-gradient(rgba(8,15,26,.28), rgba(8,15,26,.72)), url(${assetUrl(state.stage.background)})` } : undefined}>
 					<div className="mist mist-one" /><div className="mist mist-two" />
-					<div className="character-layer">{state.stage.characters.map((character, index) => <img key={character} className={`character character-${index}`} src={assetUrl(character)} alt={character === "character.zhangliang" ? "张良立绘" : character === "character.elder" ? "衣褐老父立绘" : "叙事角色"} />)}</div>
+					<div className="character-layer">{state.stage.characters.map((character, index) => <img key={character} className={`character character-${index}`} src={assetUrl(character)} alt={assetAlt(character)} />)}</div>
 					<div className="scene-caption">{activeContent.story.title} · {source?.title ?? "叙事进行中"}</div>
 				</div>
 				<div className="progress-line"><span style={{ width: `${Math.min(100, Math.max(8, state.backlog.length * 10))}%` }} /></div>

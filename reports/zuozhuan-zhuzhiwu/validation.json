@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "diagnostics": {
+    "root": "content/zuozhuan-zhuzhiwu",
+    "choices": 14,
+    "canonicalChoices": 7,
+    "counterfactualChoices": 7,
+    "outcomes": 5,
+    "citedClaims": 12,
+    "assetReferences": 25
+  },
+  "errors": []
+}

@@ -35,4 +35,10 @@ withFixture("unmapped usage", (fixture) => {
 	const file = join(fixture, "canon/claims.jsonl");
 	writeFileSync(file, readFileSync(file, "utf8").replace("demo.act-01.take-shoe", "demo.act-99.missing"));
 });
-console.log("Validator regression tests passed: source, quote, canonical evidence, asset, and usage failures are blocked");
+withFixture("unmet chapter quality target", (fixture) => {
+	const file = join(fixture, "design/quality-targets.json");
+	const targets = JSON.parse(readFileSync(file, "utf8"));
+	targets.evidence.claims.min = 99;
+	writeFileSync(file, `${JSON.stringify(targets, null, 2)}\n`);
+});
+console.log("Validator regression tests passed: source, quote, canonical evidence, asset, usage, and quality-target failures are blocked");

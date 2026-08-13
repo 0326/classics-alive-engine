@@ -1,0 +1,8 @@
+{
+  "id": "zuozhuan-zhuzhiwu",
+  "title": "左传·烛之武退秦师（夜缒说秦切片）",
+  "language": "zh-CN",
+  "version": "0.1.0",
+  "license": "public-domain",
+  "defaultRenderer": "dom"
+}

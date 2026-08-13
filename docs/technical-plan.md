@@ -197,8 +197,9 @@ npm run test:e2e
 - 正史路线通关与正确结局；
 - 死亡、成就、资产与小游戏 ID 注册；
 - Web 构建、存读档、键盘操作、手机视图和关键玩家路径。
+- `design/quality-targets.json` 所声明的章节时长、证据、分支、结局和人工审校门槛。
 
-每个故事构建生成 `reports/<book>/<story>/`，包含验证 JSON、正史路线、引文覆盖率、缺失资产、分支图和浏览器试玩结果。只有报告无阻断项时才允许部署。
+`npm run playability:gate` 必须串行运行内容质量、静态检查、回归、生产构建、体积预算、浏览器试玩和部署 dry-run，并生成 `reports/<book>/quality-gate.json` 与 `completion.json`。只有 `completion.json` 无阻断项时才允许技术交付；若内容包要求人工史学审核，则发布状态仍为 `blocked:human-historical-review`，直到审核记录真实更新。
 
 ## 10. 后续扩展
 

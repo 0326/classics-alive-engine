@@ -1,8 +1,9 @@
 import { Compiler } from "inkjs/full";
 import { readFileSync } from "node:fs";
+import { resolve } from "node:path";
+import { activeGame } from "./active-game.mjs";
 
-const file = process.argv[2];
-if (!file) throw new Error("Usage: node scripts/verify-ink.mjs <story.ink>");
+const file = process.argv[2] ?? resolve(activeGame.contentPack, "stories", `${activeGame.storyId}.ink`);
 const source = readFileSync(file, "utf8");
 let story;
 try { story = new Compiler(source).Compile(); }
